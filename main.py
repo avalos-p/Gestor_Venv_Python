@@ -1,4 +1,4 @@
-from src.interfaz import GestorInterfaz
+from src_gestor.interfaz import GestorInterfaz
 """
 Gestor de Entornos Virtuales - Compatible con Windows y Linux
 """

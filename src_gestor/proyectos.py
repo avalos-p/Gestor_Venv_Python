@@ -1,6 +1,6 @@
 import shutil
 from pathlib import Path
-from src.utilidades import SistemaOperativo, validar_nombre
+from src_gestor.utilidades import SistemaOperativo, validar_nombre
 
 """
 Gestión de Proyectos y directorios
@@ -61,7 +61,7 @@ class GestorProyectos:
             for directorio in self.directorio_proyectos.iterdir():
                 if (directorio.is_dir() and 
                     not directorio.name.startswith('.') and
-                    directorio.name not in ['__pycache__']):
+                    directorio.name not in ['__pycache__', 'src_gestor']):
                     info_proyecto = {
                         'nombre': directorio.name,
                         'ruta': directorio,
@@ -97,7 +97,7 @@ class GestorProyectos:
         for subdirectorio in ruta_proyecto.iterdir():
             if (subdirectorio.is_dir() and
                 not subdirectorio.name.startswith('.') and
-                subdirectorio.name not in ['venvs', '__pycache__']):
+                subdirectorio.name not in ['venvs', '__pycache__', 'src_gestor', 'src', 'node_modules']):
                 carpetas.append({
                     'nombre': subdirectorio.name,
                     'ruta': subdirectorio

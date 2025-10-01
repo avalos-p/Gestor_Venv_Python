@@ -121,4 +121,3 @@ class EjecutorComandos:
 def validar_nombre(nombre):
     """Valida que un nombre solo contenga caracteres permitidos"""
     return nombre.replace('_', '').replace('-', '').isalnum()
-

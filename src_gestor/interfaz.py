@@ -2,8 +2,8 @@ import tkinter as tk
 from tkinter import ttk, messagebox, filedialog, scrolledtext
 from pathlib import Path
 
-from src.proyectos import GestorProyectos
-from src.entornos import GestorEntornos
+from src_gestor.proyectos import GestorProyectos
+from src_gestor.entornos import GestorEntornos
 
 """
 Interfaz Gráfica del Gestor de Entornos Virtuales, con ventana principal y los componentes visuales
@@ -619,7 +619,7 @@ class GestorInterfaz:
             exito, mensaje = self.gestor_proyectos.abrir_carpeta_proyecto(info['nombre'])
         else:
             # Para entornos y carpetas, abre directamente la ruta
-            from utilidades import SistemaOperativo
+            from src_gestor.utilidades import SistemaOperativo
             sistema = SistemaOperativo()
             exito = sistema.abrir_carpeta(info['ruta'])
             mensaje = "Carpeta abierta" if exito else "No se pudo abrir la carpeta"
@@ -643,7 +643,7 @@ class GestorInterfaz:
                 elif info['tipo'] == 'proyecto':
                     exito, mensaje = self.gestor_proyectos.abrir_terminal_proyecto(info['nombre'])
                 else:
-                    from utilidades import SistemaOperativo
+                    from src_gestor.utilidades import SistemaOperativo
                     sistema = SistemaOperativo()
                     exito = sistema.abrir_terminal(info['ruta'])
                     mensaje = "Terminal abierto" if exito else "No se pudo abrir terminal"

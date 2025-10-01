@@ -1,7 +1,7 @@
 import subprocess
 import shutil
 from pathlib import Path
-from src.utilidades import SistemaOperativo, EjecutorComandos, validar_nombre
+from src_gestor.utilidades import SistemaOperativo, EjecutorComandos, validar_nombre
 
 """
 Creación, eliminación y manejo de entornos virtuales de Python
