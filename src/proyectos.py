@@ -33,8 +33,8 @@ class GestorProyectos:
         try:
             # Crea la estructura del proyecto
             ruta_proyecto.mkdir(parents=True)
-            (ruta_proyecto / "venvs").mkdir()
-            (ruta_proyecto / "src").mkdir()
+            # (ruta_proyecto / "venvs").mkdir()
+            # (ruta_proyecto / "src").mkdir()
 
             # Crea archivos básicos del proyecto
             crear_readme(ruta_proyecto, nombre)
