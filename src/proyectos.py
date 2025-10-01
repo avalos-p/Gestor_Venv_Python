@@ -1,6 +1,6 @@
 import shutil
 from pathlib import Path
-from src.utilidades import SistemaOperativo, validar_nombre, crear_gitignore, crear_readme
+from src.utilidades import SistemaOperativo, validar_nombre
 
 """
 Gestión de Proyectos y directorios
@@ -11,7 +11,7 @@ class GestorProyectos:
 
     def __init__(self, directorio_base):
         self.directorio_base = Path(directorio_base)
-        self.directorio_proyectos = self.directorio_base / "projects"
+        self.directorio_proyectos = self.directorio_base
         self.sistema = SistemaOperativo()
 
         # Asegura que existe el directorio de proyectos
@@ -33,12 +33,6 @@ class GestorProyectos:
         try:
             # Crea la estructura del proyecto
             ruta_proyecto.mkdir(parents=True)
-            # (ruta_proyecto / "venvs").mkdir()
-            # (ruta_proyecto / "src").mkdir()
-
-            # Crea archivos básicos del proyecto
-            crear_readme(ruta_proyecto, nombre)
-            crear_gitignore(ruta_proyecto)
 
             return True, f"Proyecto '{nombre}' creado exitosamente"
 
@@ -65,7 +59,9 @@ class GestorProyectos:
 
         try:
             for directorio in self.directorio_proyectos.iterdir():
-                if directorio.is_dir():
+                if (directorio.is_dir() and 
+                    not directorio.name.startswith('.') and
+                    directorio.name not in ['__pycache__']):
                     info_proyecto = {
                         'nombre': directorio.name,
                         'ruta': directorio,
@@ -82,7 +78,7 @@ class GestorProyectos:
     def _obtener_entornos_proyecto(self, ruta_proyecto):
         """Obtiene los entornos virtuales de un proyecto"""
         entornos = []
-        directorio_venvs = ruta_proyecto / "venvs"
+        directorio_venvs = ruta_proyecto
 
         if directorio_venvs.exists():
             for venv_dir in directorio_venvs.iterdir():
@@ -100,7 +96,8 @@ class GestorProyectos:
 
         for subdirectorio in ruta_proyecto.iterdir():
             if (subdirectorio.is_dir() and
-                subdirectorio.name not in ['venvs', '__pycache__', '.git']):
+                not subdirectorio.name.startswith('.') and
+                subdirectorio.name not in ['venvs', '__pycache__']):
                 carpetas.append({
                     'nombre': subdirectorio.name,
                     'ruta': subdirectorio

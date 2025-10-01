@@ -27,7 +27,7 @@ class GestorEntornos:
         if not ruta_proyecto.exists():
             return False, f"El proyecto '{nombre_proyecto}' no existe"
 
-        ruta_entorno = ruta_proyecto / "venvs" / nombre_entorno
+        ruta_entorno = ruta_proyecto / nombre_entorno
 
         if ruta_entorno.exists():
             return False, f"Ya existe un entorno llamado '{nombre_entorno}'"
@@ -40,7 +40,7 @@ class GestorEntornos:
 
     def eliminar_entorno(self, nombre_proyecto, nombre_entorno):
         """Elimina un entorno virtual"""
-        ruta_entorno = self.directorio_proyectos / nombre_proyecto / "venvs" / nombre_entorno
+        ruta_entorno = self.directorio_proyectos / nombre_proyecto / nombre_entorno
 
         if not ruta_entorno.exists():
             return False, f"El entorno '{nombre_entorno}' no existe"
@@ -116,7 +116,7 @@ class GestorEntornos:
     def abrir_terminal_con_entorno(self, nombre_proyecto, nombre_entorno):
         """Abre una terminal con el entorno virtual activado"""
         ruta_proyecto = self.directorio_proyectos / nombre_proyecto
-        ruta_entorno = ruta_proyecto / "venvs" / nombre_entorno
+        ruta_entorno = ruta_proyecto / nombre_entorno
 
         if not ruta_entorno.exists():
             return False, f"El entorno '{nombre_entorno}' no existe"
@@ -165,14 +165,14 @@ class GestorEntornos:
 
     def _obtener_pip_entorno(self, nombre_proyecto, nombre_entorno):
         """Obtiene la ruta del pip del entorno virtual"""
-        ruta_entorno = self.directorio_proyectos / nombre_proyecto / "venvs" / nombre_entorno
+        ruta_entorno = self.directorio_proyectos / nombre_proyecto / nombre_entorno
         return self.sistema.obtener_pip_venv(ruta_entorno)
 
     def entorno_existe(self, nombre_proyecto, nombre_entorno):
         """Verifica si existe un entorno virtual específico"""
-        ruta_entorno = self.directorio_proyectos / nombre_proyecto / "venvs" / nombre_entorno
+        ruta_entorno = self.directorio_proyectos / nombre_proyecto / nombre_entorno
         return ruta_entorno.exists() and (ruta_entorno / "pyvenv.cfg").exists()
 
     def obtener_ruta_entorno(self, nombre_proyecto, nombre_entorno):
         """Devuelve la ruta completa de un entorno virtual"""
-        return self.directorio_proyectos / nombre_proyecto / "venvs" / nombre_entorno
+        return self.directorio_proyectos / nombre_proyecto / nombre_entorno
