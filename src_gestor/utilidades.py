@@ -1,14 +1,14 @@
-"""
-Utilidades del Gestor de Entornos Virtuales
-Funciones auxiliares para el funcionamiento del sistema
-"""
-
 import subprocess
 import threading
 import platform
 import sys
 import os
 from pathlib import Path
+
+"""
+Utilidades del Gestor de Entornos Virtuales
+Funciones auxiliares para el funcionamiento del sistema
+"""
 
 class SistemaOperativo:
     """Maneja las diferencias entre sistemas operativos"""
